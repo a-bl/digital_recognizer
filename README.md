@@ -3,51 +3,60 @@ Python Jupyter Notebook with Convolutional Neural Network digit recognizer imple
 
 Part of the [Kaggle](https://www.kaggle.com/c/digit-recognizer) competition.
 
-Submitted [Kernel](https://www.kaggle.com/anastasiiablyzniuk/digital-recognizer-cnn?scriptVersionId=48741453) with 0.99025 score.
+Submitted [Kernel](https://www.kaggle.com/anastasiiablyzniuk/digital-recognizer-cnn) with 0.99728 score.
 
 # Data
 Dataset: [MNIST Handwritten digits](https://www.kaggle.com/c/digit-recognizer/data)
 
 Description: Classification of handwritten digits, 10 classes (0-9).
 
-Training: 37.8k (0.9) images
+Training: 60k images
 
-Validation: 4.2k (0.1) images
+Validation: 10k images
 
 Testing: 28k images
 
 # Model
 ```
+Model: "sequential"
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
-conv2d (Conv2D)              (None, 26, 26, 32)        320       
+conv2d (Conv2D)              (None, 28, 28, 32)        832       
 _________________________________________________________________
-conv2d_1 (Conv2D)            (None, 24, 24, 32)        9248      
+conv2d_1 (Conv2D)            (None, 28, 28, 32)        25632     
 _________________________________________________________________
-max_pooling2d (MaxPooling2D) (None, 12, 12, 32)        0         
+max_pooling2d (MaxPooling2D) (None, 14, 14, 32)        0         
 _________________________________________________________________
-conv2d_2 (Conv2D)            (None, 10, 10, 64)        18496     
+dropout (Dropout)            (None, 14, 14, 32)        0         
 _________________________________________________________________
-conv2d_3 (Conv2D)            (None, 8, 8, 64)          36928     
+conv2d_2 (Conv2D)            (None, 14, 14, 64)        18496     
 _________________________________________________________________
-max_pooling2d_1 (MaxPooling2 (None, 4, 4, 64)          0         
+conv2d_3 (Conv2D)            (None, 14, 14, 64)        36928     
 _________________________________________________________________
-flatten (Flatten)            (None, 1024)              0         
+max_pooling2d_1 (MaxPooling2 (None, 7, 7, 64)          0         
 _________________________________________________________________
-dense (Dense)                (None, 512)               524800    
+dropout_1 (Dropout)          (None, 7, 7, 64)          0         
 _________________________________________________________________
-dropout (Dropout)            (None, 512)               0         
+flatten (Flatten)            (None, 3136)              0         
 _________________________________________________________________
-dense_1 (Dense)              (None, 256)               131328    
+dense (Dense)                (None, 256)               803072    
 _________________________________________________________________
-dense_2 (Dense)              (None, 10)                2570      
+dropout_2 (Dropout)          (None, 256)               0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 10)                2570      
 =================================================================
-Total params: 723,690
-Trainable params: 723,690
+Total params: 887,530
+Trainable params: 887,530
 Non-trainable params: 0
 _________________________________________________________________
 ```
 
+# Loss and accuracy curves
+![](/images/loss_and_accuracy_curves.PNG)
+
+# Confusion matrix
+![](/images/confusion_matrix.PNG)
+
 # Results
-Kaggle score: 0.99025
+Kaggle score: 0.99728
